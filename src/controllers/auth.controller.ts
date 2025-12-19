@@ -49,7 +49,7 @@ export class AuthController {
 
   async me(req: any, res: Response) {
     try {
-      if (!req.user?.id) {
+      if (!req.user.id) {
         return res.status(401).json({ message: "Unauthorized" });
       }
 

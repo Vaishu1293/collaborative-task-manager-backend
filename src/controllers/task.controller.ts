@@ -9,7 +9,7 @@ export class TaskController {
   async create(req: AuthRequest, res: Response) {
     try {
       const parsed = CreateTaskDto.parse(req.body);
-      const task = await service.createTask(parsed, req.user.id);
+      const task = await service.createTask(parsed, (req as any).user.id);
       return res.status(201).json(task);
     } catch (err: any) {
       return res.status(400).json({ message: err.message });
@@ -19,7 +19,7 @@ export class TaskController {
   async list(req: AuthRequest, res: Response) {
     try {
       const parsed = TaskFilterDto.parse(req.query);
-      const tasks = await service.listTasks(req.user.id, parsed);
+      const tasks = await service.listTasks((req as any).user.id, parsed);
       return res.json(tasks);
     } catch (err: any) {
       return res.status(400).json({ message: err.message });
@@ -30,7 +30,7 @@ export class TaskController {
     try {
       const taskId = req.params.id;
       const parsed = UpdateTaskDto.parse(req.body);
-      const task = await service.updateTask(taskId, req.user.id, parsed);
+      const task = await service.updateTask(taskId as any,(req as any).user.id, parsed);
       return res.json(task);
     } catch (err: any) {
       const msg = err.message || "Error";
@@ -45,7 +45,7 @@ export class TaskController {
   async remove(req: AuthRequest, res: Response) {
     try {
       const taskId = req.params.id;
-      await service.deleteTask(taskId, req.user.id);
+      await service.deleteTask(taskId as any, (req as any).user.id);
       return res.status(204).send();
     } catch (err: any) {
       const msg = err.message || "Error";
@@ -59,7 +59,7 @@ export class TaskController {
 
   async dashboard(req: AuthRequest, res: Response) {
     try {
-      const data = await service.getDashboard(req.user.id);
+      const data = await service.getDashboard((req as any).user.id);
       return res.json(data);
     } catch {
       return res.status(500).json({ message: "Failed to load dashboard" });

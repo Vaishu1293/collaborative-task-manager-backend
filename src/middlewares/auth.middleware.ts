@@ -19,9 +19,16 @@ export function authMiddleware(
       id: string;
     };
 
-    req.user = { id: decoded.id };
+    (req as any).user = { id: decoded.id };
+
     next();
   } catch {
     return res.status(401).json({ message: "Invalid token" });
   }
 }
+export interface AuthRequest extends Request {
+  user?: {
+    id: string;
+  };
+}
+
