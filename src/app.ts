@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL || 'http://localhost:3000', "https://your-frontend.vercel.app",],
+    origin: [process.env.CLIENT_URL || 'http://localhost:3000', "https://collaborative-task-manager-frontend-alpha.vercel.app",],
     credentials: true,
   })
 );

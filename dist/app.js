@@ -10,7 +10,7 @@ const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
 const task_routes_1 = __importDefault(require("./routes/task.routes"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: [process.env.CLIENT_URL || 'http://localhost:3000', "https://your-frontend.vercel.app",],
+    origin: [process.env.CLIENT_URL || 'http://localhost:3000', "https://collaborative-task-manager-frontend-alpha.vercel.app",],
     credentials: true,
 }));
 app.use(express_1.default.json());
